@@ -19,6 +19,7 @@
 		2AE934662044B6C900F9EA4F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE934652044B6C900F9EA4F /* SignUpViewController.swift */; };
 		2AE934682044C54500F9EA4F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE934672044C54500F9EA4F /* SettingsViewController.swift */; };
 		2AE9346A2044C77800F9EA4F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AE934692044C77800F9EA4F /* GoogleService-Info.plist */; };
+		2AE9346C2044E97200F9EA4F /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE9346B2044E97200F9EA4F /* AlertController.swift */; };
 		4BE826CAE696891F35B6B7E1 /* Pods_FootprintsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6CC95F1A3947FE0AAD47AD /* Pods_FootprintsTests.framework */; };
 		EBBC579378B8782383F0A6B6 /* Pods_FootprintsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5656F0C2B459954677FEEC5F /* Pods_FootprintsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		2AE934652044B6C900F9EA4F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2AE934672044C54500F9EA4F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2AE934692044C77800F9EA4F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2AE9346B2044E97200F9EA4F /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		5656F0C2B459954677FEEC5F /* Pods_FootprintsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FootprintsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD295EDE64D9844FA865775 /* Pods-Footprints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footprints.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Footprints/Pods-Footprints.debug.xcconfig"; sourceTree = "<group>"; };
 		66E9509FB1210F2282AF4542 /* Pods-Footprints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footprints.release.xcconfig"; path = "Pods/Target Support Files/Pods-Footprints/Pods-Footprints.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				2A4B763420447CA50074878D /* ViewController.swift */,
 				2AE934632044B6A700F9EA4F /* LogInViewController.swift */,
 				2AE934652044B6C900F9EA4F /* SignUpViewController.swift */,
+				2AE9346B2044E97200F9EA4F /* AlertController.swift */,
 				2AE934672044C54500F9EA4F /* SettingsViewController.swift */,
 				2A4B763620447CA50074878D /* Main.storyboard */,
 				2A4B763920447CA50074878D /* Assets.xcassets */,
@@ -404,9 +407,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Footprints/Pods-Footprints-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -479,6 +485,7 @@
 				2A4B763520447CA50074878D /* ViewController.swift in Sources */,
 				2AE934662044B6C900F9EA4F /* SignUpViewController.swift in Sources */,
 				2AE934682044C54500F9EA4F /* SettingsViewController.swift in Sources */,
+				2AE9346C2044E97200F9EA4F /* AlertController.swift in Sources */,
 				2A4B763320447CA50074878D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

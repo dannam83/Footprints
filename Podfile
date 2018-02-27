@@ -7,7 +7,7 @@ target 'Footprints' do
 
   # Pods for Footprints
     pod 'Firebase/Core'
-    pod 'Firebase/Auth'
+    pod 'FirebaseUI/Auth'
 
 
   target 'FootprintsTests' do

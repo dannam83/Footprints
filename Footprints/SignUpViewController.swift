@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuthUI
 
 class SignUpViewController: UIViewController {
 
@@ -18,6 +20,20 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
     @IBAction func signUpButton(_ sender: Any) {
+        
+        guard
+            let firstName = firstNameTF.text, firstName != "",
+            let lastName = lastNameTF.text, lastName != "",
+            let phone = phoneTF.text, phone != "",
+            let email = emailTF.text, email != "",
+            let password = passwordTF.text, password != ""
+            else {
+                AlertController.showAlert(self, title: "Missing Info", message: "Please fill in all information.")
+                return
+        }
+        
+        
+        
     }
     
 }
