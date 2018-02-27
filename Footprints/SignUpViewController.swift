@@ -39,14 +39,23 @@ class SignUpViewController: UIViewController {
                 return
             }
             
-            if user == nil {
+            guard let user = user else {
                 AlertController.showAlert(self, title: "Error signing up", message: "Error. Please try again.")
                 return
             }
 
-            let user = user
-            print(user?.email ?? "no user")
-            print(user?.uid ?? "no user id")
+            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            changeRequest?.displayName = firstName + " " + lastName
+            changeRequest?.commitChanges(completion: { (error) in
+                guard error == nil else {
+                    AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
+                    return
+                }
+            })
+            
+            print(user.email ?? "no user")
+            print(user.uid)
+            print(user.displayName ?? "no username")
             
             self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
         })
