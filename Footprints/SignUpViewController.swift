@@ -20,7 +20,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
     @IBAction func signUpButton(_ sender: Any) {
-        print("sign up pushed")
         guard
             let firstName = firstNameTF.text, firstName != "",
             let lastName = lastNameTF.text, lastName != "",
@@ -30,6 +29,11 @@ class SignUpViewController: UIViewController {
             else {
                 AlertController.showAlert(self, title: "Incomplete form", message: "Please fill in all information.")
                 return
+        }
+        
+        guard password == confirmPasswordTF.text else {
+            AlertController.showAlert(self, title: "Error signing up", message: "Password and password confirmation must match.")
+            return
         }
         
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -56,7 +60,7 @@ class SignUpViewController: UIViewController {
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
                 
                 guard let user = user, error == nil else {
-                    AlertController.showAlert(self, title: "Login Error", message: "Your account is all set, but try logging in again.")
+                    AlertController.showAlert(self, title: "Error logging in", message: "Your account is all set, but try logging in again.")
                     self.performSegue(withIdentifier: "retryLogInSegue", sender: nil)
                     return
                 }

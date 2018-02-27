@@ -56,7 +56,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WOc-7f-ZWY">
-                                <rect key="frame" x="222" y="309" width="137" height="30"/>
+                                <rect key="frame" x="224" y="309" width="135" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
@@ -230,7 +230,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lYJ-SN-MMY"/>
+        <segue reference="ooY-Od-syU"/>
         <segue reference="vTs-uL-Ckc"/>
     </inferredMetricsTieBreakers>
 </document>
