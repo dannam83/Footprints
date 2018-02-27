@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
     @IBAction func signUpButton(_ sender: Any) {
-        
+        print("sign up pushed")
         guard
             let firstName = firstNameTF.text, firstName != "",
             let lastName = lastNameTF.text, lastName != "",
@@ -28,11 +28,28 @@ class SignUpViewController: UIViewController {
             let email = emailTF.text, email != "",
             let password = passwordTF.text, password != ""
             else {
-                AlertController.showAlert(self, title: "Missing Info", message: "Please fill in all information.")
+                AlertController.showAlert(self, title: "Incomplete form", message: "Please fill in all information.")
                 return
         }
         
-        
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+            
+            guard error == nil else {
+                AlertController.showAlert(self, title: "Error signing up", message: error!.localizedDescription)
+                return
+            }
+            
+            if user == nil {
+                AlertController.showAlert(self, title: "Error signing up", message: "Error. Please try again.")
+                return
+            }
+
+            let user = user
+            print(user?.email ?? "no user")
+            print(user?.uid ?? "no user id")
+            
+            self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
+        })
         
     }
     
