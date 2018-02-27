@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController {
                 return
             }
             
-            guard let user = user else {
+            if user == nil {
                 AlertController.showAlert(self, title: "Error signing up", message: "Error. Please try again.")
                 return
             }
@@ -53,11 +53,21 @@ class SignUpViewController: UIViewController {
                 }
             })
             
-            print(user.displayName ?? "no username")
-            print(user.email ?? "no user")
-            print(user.uid)
-            
-            self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                
+                guard let user = user, error == nil else {
+                    AlertController.showAlert(self, title: "Login Error", message: "Your account is all set, but try logging in again.")
+                    self.performSegue(withIdentifier: "retryLogInSegue", sender: nil)
+                    return
+                }
+                
+                print(user.displayName ?? "no username")
+                print(user.email ?? "no email")
+                print(user.uid)
+                
+                self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
+                
+            })
         })
         
     }

@@ -185,6 +185,7 @@
                         <outlet property="passwordTF" destination="Wft-14-RaR" id="3Ih-0J-nA5"/>
                         <outlet property="phoneTF" destination="NFI-pv-BH7" id="Cou-qa-RtB"/>
                         <segue destination="IkL-YT-f8F" kind="show" identifier="signedUpSegue" id="lYJ-SN-MMY"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="retryLogInSegue" id="vTs-uL-Ckc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kx6-gq-hTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,7 +230,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ooY-Od-syU"/>
-        <segue reference="knL-cA-sYT"/>
+        <segue reference="lYJ-SN-MMY"/>
+        <segue reference="vTs-uL-Ckc"/>
     </inferredMetricsTieBreakers>
 </document>

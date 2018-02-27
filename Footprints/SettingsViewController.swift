@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController {
         super .viewDidLoad()
         
         if let username = Auth.auth().currentUser?.displayName {
-            greeting.text = username + "!"
+            greeting.text = "Hello " + username + "!"
         }
     }
     
