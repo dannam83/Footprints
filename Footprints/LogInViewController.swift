@@ -38,7 +38,18 @@ class LogInViewController: UIViewController {
                 return
             }
             
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                guard error == nil else {
+                    AlertController.showAlert(self, title: "Error Logging In", message: error!.localizedDescription)
+                    return
+                }
+            })
             
+            print(user.uid)
+            print(user.displayName ?? "no username")
+            print(user.email ?? "no email")
+            
+            self.performSegue(withIdentifier: "loggedInSegue", sender: nil)
             
             })
         
