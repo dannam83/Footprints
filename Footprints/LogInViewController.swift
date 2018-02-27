@@ -45,9 +45,9 @@ class LogInViewController: UIViewController {
                 }
             })
             
-            print(user.uid)
             print(user.displayName ?? "no username")
             print(user.email ?? "no email")
+            print(user.uid)
             
             self.performSegue(withIdentifier: "loggedInSegue", sender: nil)
             

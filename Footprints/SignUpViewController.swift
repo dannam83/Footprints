@@ -53,9 +53,9 @@ class SignUpViewController: UIViewController {
                 }
             })
             
+            print(user.displayName ?? "no username")
             print(user.email ?? "no user")
             print(user.uid)
-            print(user.displayName ?? "no username")
             
             self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
         })

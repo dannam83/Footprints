@@ -7,11 +7,30 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuthUI
 
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var greeting: UILabel!
+    
+    override func viewDidLoad() {
+        super .viewDidLoad()
+        
+        if let username = Auth.auth().currentUser?.displayName {
+            greeting.text = username + "!"
+        }
+    }
+    
     @IBAction func logOutButton(_ sender: Any) {
+        
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "logOutSegue", sender: nil)
+        } catch {
+            print(error)
+        }
+        
     }
 
 }
