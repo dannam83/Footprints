@@ -14,7 +14,6 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
-    @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confirmPasswordTF: UITextField!
@@ -23,7 +22,6 @@ class SignUpViewController: UIViewController {
         guard
             let firstName = firstNameTF.text, firstName != "",
             let lastName = lastNameTF.text, lastName != "",
-            let phone = phoneTF.text, phone != "",
             let email = emailTF.text, email != "",
             let password = passwordTF.text, password != ""
             else {
@@ -37,7 +35,6 @@ class SignUpViewController: UIViewController {
         }
         
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-            
             guard error == nil else {
                 AlertController.showAlert(self, title: "Error signing up", message: error!.localizedDescription)
                 return
@@ -58,7 +55,6 @@ class SignUpViewController: UIViewController {
             })
             
             Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-                
                 guard let user = user, error == nil else {
                     AlertController.showAlert(self, title: "Error logging in", message: "Your account is all set, but try logging in again.")
                     self.performSegue(withIdentifier: "retryLogInSegue", sender: nil)

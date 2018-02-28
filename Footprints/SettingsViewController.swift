@@ -23,14 +23,12 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func logOutButton(_ sender: Any) {
-        
         do {
             try Auth.auth().signOut()
             performSegue(withIdentifier: "logOutSegue", sender: nil)
         } catch {
             print(error)
         }
-        
     }
 
 }
