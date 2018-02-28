@@ -15,6 +15,15 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super .viewDidAppear(animated)
+        
+        guard Auth.auth().currentUser == nil else {
+            self.performSegue(withIdentifier: "loggedInSegue", sender: nil)
+            return
+        }
+    }
+    
     @IBAction func logInButton(_ sender: Any) {
         
         guard let email = emailTF.text, email != "" else {
