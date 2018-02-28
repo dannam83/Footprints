@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u3W-Qr-YV7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,42 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Opening View Controller-->
+        <scene sceneID="Giv-cH-7WK">
+            <objects>
+                <viewController id="u3W-Qr-YV7" customClass="OpeningViewController" customModule="Footprints" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fVL-Dx-yma">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Footprints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ibZ-Sn-7iO">
+                                <rect key="frame" x="16" y="170" width="343" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-s2-17B">
+                                <rect key="frame" x="168" y="279" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="log in"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="S7m-9g-ab6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.94425760209999998" blue="0.79133307600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="ulx-Wj-o7E"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="goLogInSegue" id="0qp-1Z-Ev2"/>
+                        <segue destination="IkL-YT-f8F" kind="show" identifier="goLoggedInSegue" id="wP1-FZ-1gE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HoI-Ky-1l9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-770.39999999999998" y="-407.0464767616192"/>
+        </scene>
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -221,7 +257,7 @@
                     </view>
                     <connections>
                         <outlet property="greeting" destination="JDX-Cw-QKj" id="rnw-Hv-jJL"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="logOutSegue" id="knL-cA-sYT"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logOutSegue" id="tdP-QZ-zN6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3q-dg-KhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,7 +266,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ooY-Od-syU"/>
-        <segue reference="vTs-uL-Ckc"/>
+        <segue reference="wP1-FZ-1gE"/>
+        <segue reference="tdP-QZ-zN6"/>
     </inferredMetricsTieBreakers>
 </document>
