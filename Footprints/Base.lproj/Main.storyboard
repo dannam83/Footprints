@@ -31,12 +31,12 @@
                     </view>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="goLogInSegue" id="0qp-1Z-Ev2"/>
-                        <segue destination="IkL-YT-f8F" kind="show" identifier="goLoggedInSegue" id="wP1-FZ-1gE"/>
+                        <segue destination="evI-7F-RuI" kind="show" identifier="goLoggedInSegue" id="3pZ-ZV-x0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoI-Ky-1l9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-770.39999999999998" y="-407.0464767616192"/>
+            <point key="canvasLocation" x="-756" y="-48"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -105,12 +105,12 @@
                     <connections>
                         <outlet property="emailTF" destination="Lrf-yb-v2n" id="9iJ-Rq-8nG"/>
                         <outlet property="passwordTF" destination="H0Y-Re-QOZ" id="LXp-tq-yFr"/>
-                        <segue destination="IkL-YT-f8F" kind="show" identifier="loggedInSegue" id="ooY-Od-syU"/>
+                        <segue destination="evI-7F-RuI" kind="show" identifier="loggedInSegue" id="i6G-JQ-7U9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5.5999999999999996" y="-407.0464767616192"/>
+            <point key="canvasLocation" x="6" y="-437"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="O3l-2O-PkU">
@@ -204,13 +204,77 @@
                         <outlet property="firstNameTF" destination="hQB-P3-FMA" id="sml-KR-2Wf"/>
                         <outlet property="lastNameTF" destination="z1h-Jm-W0P" id="lPL-gj-Pcu"/>
                         <outlet property="passwordTF" destination="Wft-14-RaR" id="3Ih-0J-nA5"/>
-                        <segue destination="IkL-YT-f8F" kind="show" identifier="signedUpSegue" id="lYJ-SN-MMY"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="retryLogInSegue" id="vTs-uL-Ckc"/>
+                        <segue destination="evI-7F-RuI" kind="show" identifier="signedUpSegue" id="BRV-Q8-zYg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kx6-gq-hTm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="-407.0464767616192"/>
+            <point key="canvasLocation" x="6" y="401"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="Txe-Lg-iEV">
+            <objects>
+                <viewController id="evI-7F-RuI" customClass="HomeViewController" customModule="Footprints" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dDM-8N-dk1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORA-NS-x9d">
+                                <rect key="frame" x="0.0" y="20" width="375" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="d0Z-XG-qs6"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="PrJ-Uu-ZWs">
+                                        <barButtonItem key="leftBarButtonItem" title="Settings" id="muP-Ui-3MJ">
+                                            <connections>
+                                                <action selector="settingsTap:" destination="evI-7F-RuI" id="L7k-5V-CfA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Aw8-Km-1Db">
+                                            <connections>
+                                                <action selector="addRequestTap:" destination="evI-7F-RuI" id="kEf-TP-UWx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iyd-pk-XEa">
+                                <rect key="frame" x="16" y="104" width="343" height="543"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="request" id="h3k-SK-1C7">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h3k-SK-1C7" id="sCX-ly-bAw">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="evI-7F-RuI" id="qlQ-Ml-q3p"/>
+                                    <outlet property="delegate" destination="evI-7F-RuI" id="YRq-NP-xG9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.94425760209999998" blue="0.79133307600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ORA-NS-x9d" firstAttribute="top" secondItem="PZJ-tD-syJ" secondAttribute="top" id="LtP-sY-rDg"/>
+                            <constraint firstItem="ORA-NS-x9d" firstAttribute="leading" secondItem="PZJ-tD-syJ" secondAttribute="leading" id="izi-fp-qvh"/>
+                            <constraint firstItem="ORA-NS-x9d" firstAttribute="trailing" secondItem="PZJ-tD-syJ" secondAttribute="trailing" id="kbJ-Aa-sZM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PZJ-tD-syJ"/>
+                    </view>
+                    <connections>
+                        <segue destination="IkL-YT-f8F" kind="show" identifier="settingsSegue" id="WnS-sn-jGb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XLd-qg-Rzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="781.60000000000002" y="-48.125937031484263"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Ev6-l8-ihg">
@@ -228,11 +292,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLk-NJ-lgj">
-                                <rect key="frame" x="16" y="202" width="343" height="30"/>
+                                <rect key="frame" x="16" y="234" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Log Out"/>
                                 <connections>
                                     <action selector="logOutButton:" destination="IkL-YT-f8F" eventType="touchUpInside" id="8dQ-Ti-WaA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTS-yX-crp">
+                                <rect key="frame" x="61" y="196" width="253" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="evI-7F-RuI" kind="show" id="Zd4-Q5-s1W"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -246,11 +318,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3q-dg-KhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400.80000000000001" y="319.79010494752629"/>
+            <point key="canvasLocation" x="1158" y="631"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lYJ-SN-MMY"/>
-        <segue reference="JxH-i0-U6q"/>
+        <segue reference="WnS-sn-jGb"/>
+        <segue reference="Zd4-Q5-s1W"/>
+        <segue reference="tdP-QZ-zN6"/>
     </inferredMetricsTieBreakers>
 </document>

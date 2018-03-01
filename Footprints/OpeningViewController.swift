@@ -14,7 +14,7 @@ class OpeningViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        sleep(2)
+        sleep(1)
         if Auth.auth().currentUser == nil {
             self.performSegue(withIdentifier: "goLogInSegue", sender: self)
         } else {
