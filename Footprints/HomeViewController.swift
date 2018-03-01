@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
         self.performSegue(withIdentifier: "settingsSegue", sender: nil)
     }
     
-    @IBAction func addRequestTap(_ sender: Any) {
+    @IBAction func addPrayer(_ sender: Any) {
         let alert = UIAlertController(title: "Prayer Request", message: "Add a request", preferredStyle: .alert)
         alert.addTextField { (textfield) in
             textfield.placeholder = "Your prayer here"

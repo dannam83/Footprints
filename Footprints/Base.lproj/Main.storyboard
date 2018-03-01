@@ -234,7 +234,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Aw8-Km-1Db">
                                             <connections>
-                                                <action selector="addRequestTap:" destination="evI-7F-RuI" id="kEf-TP-UWx"/>
+                                                <action selector="addPrayer:" destination="evI-7F-RuI" id="Suy-Ji-MbT"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
