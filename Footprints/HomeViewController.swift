@@ -11,6 +11,8 @@ import Firebase
 
 class HomeViewController: UIViewController {
 
+    var prayers = [Prayers]()
+    
     @IBAction func settingsTap(_ sender: Any) {
         self.performSegue(withIdentifier: "settingsSegue", sender: nil)
     }
@@ -20,11 +22,33 @@ class HomeViewController: UIViewController {
         alert.addTextField { (textfield) in
             textfield.placeholder = "Your prayer here"
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         let save = UIAlertAction(title: "Save", style: .default) { _ in
             guard let text = alert.textFields?.first?.text else { return }
-            print(text)
+            
+            let userUID = Auth.auth().currentUser!.uid
+            let username = Auth.auth().currentUser?.displayName ?? "Anonymous"
+            let dateString = String(describing: Date())
+            
+            let userID = DatabaseAPI.shared.usersReference.child(userUID)
+            let prayerID = DatabaseAPI.shared.prayersReference.childByAutoId()
+            
+            let userParams = [
+                "prayerID"    : "show"
+            ]
+            
+            let prayerParams = [
+                "authorID"      : userUID,
+                "authorName"    : username,
+                "prayerRequest" : text,
+                "date"          : dateString,
+                "answered"      : false
+                ] as [String : Any]
+            
+            userID.setValue(userParams)
+            prayerID.setValue(prayerParams)
         }
+        
         alert.addAction(cancel)
         alert.addAction(save)
         present(alert, animated: true, completion: nil)
@@ -47,10 +71,13 @@ extension HomeViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return prayers.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = prayers[indexPath.row].message
+        cell.detailTextLabel?.text = prayers[indexPath.row].username
+        
         return cell
     }
 }
