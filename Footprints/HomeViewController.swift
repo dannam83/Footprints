@@ -22,26 +22,23 @@ class HomeViewController: UIViewController {
         alert.addTextField { (textfield) in
             textfield.placeholder = "Your prayer here"
         }
+        
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
         let save = UIAlertAction(title: "Save", style: .default) { _ in
             guard let text = alert.textFields?.first?.text else { return }
-            
             let userUID = Auth.auth().currentUser!.uid
             let username = Auth.auth().currentUser?.displayName ?? "Anonymous"
-            let dateString = String(describing: Date())
-            
             let userID = DatabaseAPI.shared.usersReference.child(userUID)
             let prayerID = DatabaseAPI.shared.prayersReference.childByAutoId()
-            
             let userParams = [
-                "prayerID"    : "show"
+                "prayerID"   : "show"
             ]
-            
             let prayerParams = [
                 "authorID"      : userUID,
                 "authorName"    : username,
                 "prayerRequest" : text,
-                "date"          : dateString,
+                "date"          : String(describing: Date()),
                 "answered"      : false
                 ] as [String : Any]
             
