@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class HomeViewController: UIViewController {
 
@@ -31,9 +32,9 @@ class HomeViewController: UIViewController {
             let username = Auth.auth().currentUser?.displayName ?? "Anonymous"
             let userID = DatabaseAPI.shared.usersReference.child(userUID)
             let prayerID = DatabaseAPI.shared.prayersReference.childByAutoId()
-            let userParams = [
-                "prayerID"   : "show"
-            ]
+            let prayerIDString = String(describing: prayerID)
+            let idStartIdx = prayerIDString.index(prayerIDString.startIndex, offsetBy: 49)
+            let prayerIDShort = prayerIDString[idStartIdx...]
             let prayerParams = [
                 "authorID"      : userUID,
                 "authorName"    : username,
@@ -42,7 +43,8 @@ class HomeViewController: UIViewController {
                 "answered"      : false
                 ] as [String : Any]
             
-            userID.setValue(userParams)
+            userID.child(String(prayerIDShort)).setValue(
+            "show")
             prayerID.setValue(prayerParams)
         }
         
@@ -53,8 +55,9 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        DatabaseAPI.shared.prayersReference.observe(DataEventType.value, with: {(snapshot) in
+            print(snapshot)
+        })
     }
 
     override func didReceiveMemoryWarning() {
