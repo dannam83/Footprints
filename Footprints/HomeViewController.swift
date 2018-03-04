@@ -19,13 +19,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         DatabaseAPI.shared.prayersReference.observe(DataEventType.value, with: {(snapshot) in
-           
-            
             guard let prayersSnapshot = PrayersSnapshot(with: snapshot) else { return }
-            
-            print("gets snapshot")
             self.prayers = prayersSnapshot.prayers
-            print(prayersSnapshot)
             self.tableView.reloadData()
         })
     }
@@ -80,10 +75,6 @@ class HomeViewController: UIViewController {
         alert.addAction(cancel)
         alert.addAction(save)
         present(alert, animated: true, completion: nil)
-    }
-    
-    func setupPrayer(prayerID: String, prayerParams: [String: Any]) {
-        let dbPrayers = DatabaseAPI.shared.prayersReference
     }
     
     func setupMessages(prayerID: String) {
