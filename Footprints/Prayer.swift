@@ -15,6 +15,8 @@ struct Prayer {
     let date: Date
     let answered: Bool
     let footprints: Int
+    let order: Int
+    let display: String 
     
     init?(prayerID: String, dict: [String: Any]) {
         self.prayerID = prayerID
@@ -28,7 +30,9 @@ struct Prayer {
         let dateString = dict["date"] as? String,
         let date = dateFormatter.date(from: dateString),
         let answered = dict["answered"] as? Bool,
-        let footprints = dict["footprints"] as? Int
+        let footprints = dict["footprints"] as? Int,
+        let order = dict["order"] as? Int,
+        let display = dict["display"] as? String
             else { return nil }
         
         self.authorName = authorName
@@ -36,6 +40,8 @@ struct Prayer {
         self.date = date
         self.answered = answered
         self.footprints = footprints
+        self.order = order
+        self.display = display
 
     }
 }

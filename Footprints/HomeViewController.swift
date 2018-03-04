@@ -15,12 +15,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var prayers = [Prayer]()
+    let userUID = Auth.auth().currentUser!.uid
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DatabaseAPI.shared.prayersReference.observe(DataEventType.value, with: {(snapshot) in
+        DatabaseAPI.shared.usersReference.child(self.userUID).observe(DataEventType.value, with: {(snapshot) in
             guard let prayersSnapshot = PrayersSnapshot(with: snapshot) else { return }
             self.prayers = prayersSnapshot.prayers
+            self.prayers = self.prayers.sorted(by: { $0.order > $1.order })
             self.tableView.reloadData()
         })
     }
@@ -39,11 +42,10 @@ class HomeViewController: UIViewController {
         
         let save = UIAlertAction(title: "Save", style: .default) { _ in
             guard let text = alert.textFields?.first?.text else { return }
-            let userUID = Auth.auth().currentUser!.uid
             let username = Auth.auth().currentUser?.displayName ?? "Anonymous"
             
             let database = DatabaseAPI.shared
-            let userID = database.usersReference.child(userUID)
+            let userID = database.usersReference.child(self.userUID)
             let prayerID = database.prayersReference.childByAutoId()
             
             let prayerIDString = String(describing: prayerID)
@@ -51,7 +53,7 @@ class HomeViewController: UIViewController {
             let prayerIDShort = prayerIDString[idStartIdx...]
             
             let prayerParams = [
-                "authorID"      : userUID,
+                "authorID"      : self.userUID,
                 "authorName"    : username,
                 "prayerRequest" : text,
                 "date"          : String(describing: Date()),
@@ -60,6 +62,12 @@ class HomeViewController: UIViewController {
                 ] as [String : Any]
             
             let userListParams = [
+                "authorID"      : self.userUID,
+                "authorName"    : username,
+                "prayerRequest" : text,
+                "date"          : String(describing: Date()),
+                "answered"      : false,
+                "footprints"    : 0,
                 "display"       : "show",
                 "order"         : self.prayers.count
                 ] as [String : Any]
