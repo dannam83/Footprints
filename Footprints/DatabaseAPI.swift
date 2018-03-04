@@ -15,8 +15,7 @@ class DatabaseAPI {
     private init() {}
     
     let usersReference = Database.database().reference().child("users")
-    
     let prayersReference = Database.database().reference().child("prayers")
-    
-    let intercessorsReference = Database.database().reference().child("shares")
+    let intercessorsReference = Database.database().reference().child("intercessors")
+    let messagesReference = Database.database().reference().child("messages")
 }

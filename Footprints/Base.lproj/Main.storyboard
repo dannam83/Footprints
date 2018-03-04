@@ -269,6 +269,7 @@
                         <viewLayoutGuide key="safeArea" id="PZJ-tD-syJ"/>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="iyd-pk-XEa" id="jSE-Hj-o8U"/>
                         <segue destination="IkL-YT-f8F" kind="show" identifier="settingsSegue" id="WnS-sn-jGb"/>
                     </connections>
                 </viewController>

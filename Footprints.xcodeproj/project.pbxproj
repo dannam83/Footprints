@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		08DE64C3D2E27EB940185D89 /* Pods_Footprints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE58251322F6C2D35625A67F /* Pods_Footprints.framework */; };
 		2A1E2D062048882C00357F14 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E2D052048882C00357F14 /* HomeViewController.swift */; };
-		2A1E2D0A2048E97B00357F14 /* Prayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E2D092048E97B00357F14 /* Prayers.swift */; };
 		2A1E2D0C2048F0F300357F14 /* DatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1E2D0B2048F0F200357F14 /* DatabaseAPI.swift */; };
 		2A4B763320447CA50074878D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4B763220447CA50074878D /* AppDelegate.swift */; };
 		2A4B763520447CA50074878D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4B763420447CA50074878D /* ViewController.swift */; };
@@ -18,6 +17,8 @@
 		2A4B763D20447CA50074878D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4B763B20447CA50074878D /* LaunchScreen.storyboard */; };
 		2A4B764820447CA50074878D /* FootprintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4B764720447CA50074878D /* FootprintsTests.swift */; };
 		2A4B765320447CA50074878D /* FootprintsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4B765220447CA50074878D /* FootprintsUITests.swift */; };
+		2A7F87EC204B5CCC00D21515 /* PrayersSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F87EB204B5CCC00D21515 /* PrayersSnapshot.swift */; };
+		2A7F87EE204B5EE400D21515 /* Prayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7F87ED204B5EE400D21515 /* Prayer.swift */; };
 		2AE934642044B6A700F9EA4F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE934632044B6A700F9EA4F /* LogInViewController.swift */; };
 		2AE934662044B6C900F9EA4F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE934652044B6C900F9EA4F /* SignUpViewController.swift */; };
 		2AE934682044C54500F9EA4F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE934672044C54500F9EA4F /* SettingsViewController.swift */; };
@@ -47,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		2A1E2D052048882C00357F14 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2A1E2D092048E97B00357F14 /* Prayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayers.swift; sourceTree = "<group>"; };
 		2A1E2D0B2048F0F200357F14 /* DatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAPI.swift; sourceTree = "<group>"; };
 		2A4B762F20447CA50074878D /* Footprints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Footprints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4B763220447CA50074878D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +62,8 @@
 		2A4B764E20447CA50074878D /* FootprintsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FootprintsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4B765220447CA50074878D /* FootprintsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootprintsUITests.swift; sourceTree = "<group>"; };
 		2A4B765420447CA60074878D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A7F87EB204B5CCC00D21515 /* PrayersSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayersSnapshot.swift; sourceTree = "<group>"; };
+		2A7F87ED204B5EE400D21515 /* Prayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prayer.swift; sourceTree = "<group>"; };
 		2AE934632044B6A700F9EA4F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		2AE934652044B6C900F9EA4F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2AE934672044C54500F9EA4F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -138,9 +140,10 @@
 				2AE9346D2046756C00F9EA4F /* OpeningViewController.swift */,
 				2A1E2D0B2048F0F200357F14 /* DatabaseAPI.swift */,
 				2A1E2D052048882C00357F14 /* HomeViewController.swift */,
+				2A7F87EB204B5CCC00D21515 /* PrayersSnapshot.swift */,
 				2AE934652044B6C900F9EA4F /* SignUpViewController.swift */,
 				2AE9346B2044E97200F9EA4F /* AlertController.swift */,
-				2A1E2D092048E97B00357F14 /* Prayers.swift */,
+				2A7F87ED204B5EE400D21515 /* Prayer.swift */,
 				2AE934672044C54500F9EA4F /* SettingsViewController.swift */,
 				2A4B763620447CA50074878D /* Main.storyboard */,
 				2A4B763920447CA50074878D /* Assets.xcassets */,
@@ -496,13 +499,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AE934642044B6A700F9EA4F /* LogInViewController.swift in Sources */,
-				2A1E2D0A2048E97B00357F14 /* Prayers.swift in Sources */,
+				2A7F87EC204B5CCC00D21515 /* PrayersSnapshot.swift in Sources */,
 				2A4B763520447CA50074878D /* ViewController.swift in Sources */,
 				2AE9346E2046756C00F9EA4F /* OpeningViewController.swift in Sources */,
 				2A1E2D062048882C00357F14 /* HomeViewController.swift in Sources */,
 				2AE934662044B6C900F9EA4F /* SignUpViewController.swift in Sources */,
 				2A1E2D0C2048F0F300357F14 /* DatabaseAPI.swift in Sources */,
 				2AE934682044C54500F9EA4F /* SettingsViewController.swift in Sources */,
+				2A7F87EE204B5EE400D21515 /* Prayer.swift in Sources */,
 				2AE9346C2044E97200F9EA4F /* AlertController.swift in Sources */,
 				2A4B763320447CA50074878D /* AppDelegate.swift in Sources */,
 			);

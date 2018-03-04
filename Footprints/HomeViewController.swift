@@ -12,7 +12,23 @@ import FirebaseDatabase
 
 class HomeViewController: UIViewController {
 
-    var prayers = [Prayers]()
+    @IBOutlet weak var tableView: UITableView!
+    
+    var prayers = [Prayer]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        DatabaseAPI.shared.prayersReference.observe(DataEventType.value, with: {(snapshot) in
+           
+            
+            guard let prayersSnapshot = PrayersSnapshot(with: snapshot) else { return }
+            
+            print("gets snapshot")
+            self.prayers = prayersSnapshot.prayers
+            print(prayersSnapshot)
+            self.tableView.reloadData()
+        })
+    }
     
     @IBAction func settingsTap(_ sender: Any) {
         self.performSegue(withIdentifier: "settingsSegue", sender: nil)
@@ -30,22 +46,35 @@ class HomeViewController: UIViewController {
             guard let text = alert.textFields?.first?.text else { return }
             let userUID = Auth.auth().currentUser!.uid
             let username = Auth.auth().currentUser?.displayName ?? "Anonymous"
-            let userID = DatabaseAPI.shared.usersReference.child(userUID)
-            let prayerID = DatabaseAPI.shared.prayersReference.childByAutoId()
+            
+            let database = DatabaseAPI.shared
+            let userID = database.usersReference.child(userUID)
+            let prayerID = database.prayersReference.childByAutoId()
+            
             let prayerIDString = String(describing: prayerID)
             let idStartIdx = prayerIDString.index(prayerIDString.startIndex, offsetBy: 49)
             let prayerIDShort = prayerIDString[idStartIdx...]
+            
             let prayerParams = [
                 "authorID"      : userUID,
                 "authorName"    : username,
                 "prayerRequest" : text,
                 "date"          : String(describing: Date()),
-                "answered"      : false
+                "answered"      : false,
+                "footprints"    : 0
+                ] as [String : Any]
+            
+            let userListParams = [
+                "display"       : "show",
+                "order"         : self.prayers.count
                 ] as [String : Any]
             
             userID.child(String(prayerIDShort)).setValue(
-            "show")
+            userListParams)
             prayerID.setValue(prayerParams)
+            
+            self.setupMessages(prayerID: String(prayerIDShort))
+            self.setupIntercessors(prayerID: String(prayerIDShort))
         }
         
         alert.addAction(cancel)
@@ -53,16 +82,20 @@ class HomeViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        DatabaseAPI.shared.prayersReference.observe(DataEventType.value, with: {(snapshot) in
-            print(snapshot)
-        })
+    func setupPrayer(prayerID: String, prayerParams: [String: Any]) {
+        let dbPrayers = DatabaseAPI.shared.prayersReference
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func setupMessages(prayerID: String) {
+        let messages = "Write a message!"
+        let dbMessages = DatabaseAPI.shared.messagesReference
+        dbMessages.child(String(prayerID)).setValue(messages)
+    }
+    
+    func setupIntercessors(prayerID: String) {
+        let intercessors = "Add some people!"
+        let dbIntercessors = DatabaseAPI.shared.intercessorsReference
+        dbIntercessors.child(String(prayerID)).setValue(intercessors)
     }
 }
 
@@ -75,8 +108,8 @@ extension HomeViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = prayers[indexPath.row].message
-        cell.detailTextLabel?.text = prayers[indexPath.row].username
+        cell.textLabel?.text = prayers[indexPath.row].prayerRequest
+        cell.detailTextLabel?.text = prayers[indexPath.row].authorName
         
         return cell
     }
