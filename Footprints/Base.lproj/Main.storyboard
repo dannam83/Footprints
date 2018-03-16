@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -227,16 +228,23 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Title" id="PrJ-Uu-ZWs">
-                                        <barButtonItem key="leftBarButtonItem" title="Settings" id="muP-Ui-3MJ">
+                                        <barButtonItem key="leftBarButtonItem" title="settings" id="muP-Ui-3MJ">
                                             <connections>
                                                 <action selector="settingsTap:" destination="evI-7F-RuI" id="L7k-5V-CfA"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Aw8-Km-1Db">
-                                            <connections>
-                                                <action selector="addPrayer:" destination="evI-7F-RuI" id="Suy-Ji-MbT"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="add" id="Aw8-Km-1Db">
+                                                <connections>
+                                                    <action selector="addPrayer:" destination="evI-7F-RuI" id="Suy-Ji-MbT"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="edit" id="Uyr-yA-GJ5">
+                                                <connections>
+                                                    <action selector="edit:" destination="evI-7F-RuI" id="muK-r2-q9T"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -269,6 +277,7 @@
                         <viewLayoutGuide key="safeArea" id="PZJ-tD-syJ"/>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="Uyr-yA-GJ5" id="agj-80-cAD"/>
                         <outlet property="tableView" destination="iyd-pk-XEa" id="jSE-Hj-o8U"/>
                         <segue destination="IkL-YT-f8F" kind="show" identifier="settingsSegue" id="WnS-sn-jGb"/>
                     </connections>

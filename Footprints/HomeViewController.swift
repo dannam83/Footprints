@@ -11,12 +11,13 @@ import Firebase
 import FirebaseDatabase
 
 class HomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var orderButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var prayers = [Prayer]()
     let userUID = Auth.auth().currentUser!.uid
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +27,22 @@ class HomeViewController: UIViewController {
             self.prayers = self.prayers.sorted(by: { $0.order > $1.order })
             self.tableView.reloadData()
         })
+            self.navigationItem.rightBarButtonItem = self.editButtonItem
+
     }
     
     @IBAction func settingsTap(_ sender: Any) {
         self.performSegue(withIdentifier: "settingsSegue", sender: nil)
+    }
+    
+    @IBAction func edit(_ sender: Any) {
+        tableView.isEditing = !tableView.isEditing
+        switch tableView.isEditing {
+        case true:
+            editButton.title = "done"
+        default:
+            editButton.title = "edit"
+        }
     }
     
     @IBAction func addPrayer(_ sender: Any) {
@@ -53,6 +66,7 @@ class HomeViewController: UIViewController {
             let prayerIDShort = prayerIDString[idStartIdx...]
             
             let prayerParams = [
+                "prayerID"      : prayerIDShort,
                 "authorID"      : self.userUID,
                 "authorName"    : username,
                 "prayerRequest" : text,
@@ -64,6 +78,7 @@ class HomeViewController: UIViewController {
             let userListParams = [
                 "authorID"      : self.userUID,
                 "authorName"    : username,
+                "prayerID"      : prayerIDShort,
                 "prayerRequest" : text,
                 "date"          : String(describing: Date()),
                 "answered"      : false,
@@ -98,7 +113,10 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -111,5 +129,31 @@ extension HomeViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = prayers[indexPath.row].authorName
         
         return cell
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let prayer = self.prayers[sourceIndexPath.row]
+        let database = DatabaseAPI.shared
+//        let userID = database.usersReference.child(self.userUID)
+//        userID.child(String(prayer.id).child("order").setValue(
+//            sourceIndexPath.row)
+//
+//
+        
+        self.prayers.remove(at: sourceIndexPath.row)
+        self.prayers.insert(prayer, at: destinationIndexPath.row)
     }
 }
