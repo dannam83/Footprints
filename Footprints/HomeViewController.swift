@@ -147,13 +147,37 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let prayer = self.prayers[sourceIndexPath.row]
         let database = DatabaseAPI.shared
-//        let userID = database.usersReference.child(self.userUID)
-//        userID.child(String(prayer.id).child("order").setValue(
-//            sourceIndexPath.row)
-//
-//
+        let userID = database.usersReference.child(self.userUID)
+        let start = sourceIndexPath.row
+        let end = destinationIndexPath.row
+        let change = end - start
+        print(change)
+        let newOrder = prayer.order - change
+        print(prayer.order)
+        print(newOrder)
+        var reorderPrayers = [Prayer]()
+        if (change > 0) {
+            reorderPrayers = reorderPrayers + prayers[start + 1...end]
+        } else if (change < 0){
+            reorderPrayers = reorderPrayers + prayers[end...start - 1]
+        }
+        userID.child(String(prayer.prayerID)).child("order").setValue(newOrder)
+        print(reorderPrayers)
+        for p in reorderPrayers {
+            if (change > 0) {
+                let shift = p.order + 1
+                print(shift)
+                print(p.order)
+                userID.child(String(p.prayerID)).child("order").setValue(shift)
+                print(p.order)
+            } else if (change < 0){
+                let shift = p.order - 1
+                print(p.order)
+                userID.child(String(p.prayerID)).child("order").setValue(shift)
+            }
+        }
         
-        self.prayers.remove(at: sourceIndexPath.row)
-        self.prayers.insert(prayer, at: destinationIndexPath.row)
+        self.prayers.remove(at: start)
+        self.prayers.insert(prayer, at: end)
     }
 }
