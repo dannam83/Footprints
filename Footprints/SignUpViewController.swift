@@ -15,7 +15,6 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var firstNameTF: UITextField!
     @IBOutlet weak var lastNameTF: UITextField!
-    @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confirmPasswordTF: UITextField!
@@ -24,7 +23,6 @@ class SignUpViewController: UIViewController {
         guard
             let firstName = firstNameTF.text, firstName != "",
             let lastName = lastNameTF.text, lastName != "",
-            let phone = phoneTF.text, phone != "",
             let email = emailTF.text, email != "",
             let password = passwordTF.text, password != ""
             else {
@@ -32,10 +30,7 @@ class SignUpViewController: UIViewController {
                 return
         }
         
-        let phoneMod = phone.replacingOccurrences(of: "-", with: "")
-        let emailMod = email.replacingOccurrences(of: ".", with: "")
-        self.phoneFormatCheck(phone: phoneMod)
-        
+//        self.phoneFormatCheck(phone: phoneMod)
         guard password == confirmPasswordTF.text else {
             AlertController.showAlert(self, title: "Error signing up", message: "Password and password confirmation must match.")
             return
@@ -67,43 +62,44 @@ class SignUpViewController: UIViewController {
                     self.performSegue(withIdentifier: "retryLogInSegue", sender: nil)
                     return
                 }
-                print(user.displayName ?? "no username")
-                print(user.email ?? "no email")
-                print(user.uid)
                 let emailMod = email.replacingOccurrences(of: ".", with: "")
-                self.phoneSave(phone: phone, userID: user.uid)
                 self.emailSave(email: emailMod, userID: user.uid)
                 self.userSave(userID: user.uid)
-                self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
+                self.performSegue(withIdentifier: "phoneVerifySegue", sender: nil)
             })
         })
     }
     
-    func phoneFormatCheck(phone: String) {
-        guard phone.count == 10 else {
-            AlertController.showAlert(self, title: "Error signing up", message: "Phone number must be 10 digits.")
-            return
-        }
-        for char in phone {
-            guard "1234567890".contains(char) else {
-                AlertController.showAlert(self, title: "Error signing up", message: "Phone number cannot have letters.")
-                return
-            }
-        }
-    }
-    
-    func phoneUsedCheck(phone: String) {
-        
-    }
-    
-    func emailUsedCheck(email: String) {
-        
-    }
-    
-    func phoneSave(phone: String, userID: String) {
-        let dbPhones = DatabaseAPI.shared.phonesReference
-        dbPhones.child(String(phone)).setValue(userID)
-    }
+//    func phoneFormatCheck(phone: String) {
+//        guard phone.count == 10 else {
+//            AlertController.showAlert(self, title: "Error signing up", message: "Phone number must be 10 digits.")
+//            return
+//        }
+//        for char in phone {
+//            guard "1234567890".contains(char) else {
+//                AlertController.showAlert(self, title: "Error signing up", message: "Phone number cannot have letters.")
+//                return
+//            }
+//        }
+//    }
+//
+//    func phoneUser(phone: String) -> String? {
+//        print("in phone check")
+//        let dbPhones = DatabaseAPI.shared.phonesReference
+//        var usedBy: String?
+//        dbPhones.child(String(phone)).observe(DataEventType.value, with: {(snapshot) in
+//            print("snapshot below")
+//            print(snapshot.value as Any)
+//            print("snapshot above")
+//            usedBy = snapshot.value as? String
+//        })
+//        return usedBy
+//    }
+//
+//    func phoneSave(phone: String, userID: String) {
+//        let dbPhones = DatabaseAPI.shared.phonesReference
+//        dbPhones.child(String(phone)).setValue(userID)
+//    }
     
     func emailSave(email: String, userID: String) {
         let dbEmails = DatabaseAPI.shared.emailsReference

@@ -42,6 +42,5 @@ struct Prayer {
         self.footprints = footprints
         self.order = order
         self.display = display
-
     }
 }
