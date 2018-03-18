@@ -73,6 +73,7 @@ class SignUpViewController: UIViewController {
                 let emailMod = email.replacingOccurrences(of: ".", with: "")
                 self.phoneSave(phone: phone, userID: user.uid)
                 self.emailSave(email: emailMod, userID: user.uid)
+                self.userSave(userID: user.uid)
                 self.performSegue(withIdentifier: "signedUpSegue", sender: nil)
             })
         })
@@ -108,5 +109,8 @@ class SignUpViewController: UIViewController {
         let dbEmails = DatabaseAPI.shared.emailsReference
         dbEmails.child(String(email)).setValue(userID)
     }
-    
+    func userSave(userID: String) {
+        let dbUsers = DatabaseAPI.shared.usersReference
+        dbUsers.child(String(userID)).setValue("No requests")
+    }
 }
