@@ -18,4 +18,6 @@ class DatabaseAPI {
     let prayersReference = Database.database().reference().child("prayers")
     let intercessorsReference = Database.database().reference().child("intercessors")
     let messagesReference = Database.database().reference().child("messages")
+    let phonesReference = Database.database().reference().child("phones")
+    let emailsReference = Database.database().reference().child("emails")
 }
