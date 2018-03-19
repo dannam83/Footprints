@@ -132,8 +132,31 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let prayer = self.prayers[indexPath.row]
+            let prayerID = prayer.prayerID
+            let db = DatabaseAPI.shared
+            let user = db.usersReference.child(self.userUID)
+            if self.userUID == prayer.authorID {
+                db.messagesReference.child(prayerID).setValue(nil)
+                db.prayersReference.child(prayerID).setValue(nil)
+
+//              need to setup deletion of prayer from each intercessor
+
+            }
+            let i = indexPath.row
+            if i > 0 {
+                for p in self.prayers[...i] {
+                    let newOrder = p.order - 1
+                    user.child(p.prayerID).child("order").setValue(newOrder)
+                }
+            }
+            if self.prayers.count == 1 {
+                user.setValue("Deleted all requests")
+                self.prayers.remove(at: 0)
+                self.tableView.reloadData()
+            } else {
+                user.child(prayerID).setValue(nil)
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
@@ -148,10 +171,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let start = sourceIndexPath.row
         let end = destinationIndexPath.row
         let change = end - start
-        print(change)
         let newOrder = prayer.order - change
-        print(prayer.order)
-        print(newOrder)
         var reorderPrayers = [Prayer]()
         if (change > 0) {
             reorderPrayers = reorderPrayers + prayers[start + 1...end]
@@ -159,21 +179,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             reorderPrayers = reorderPrayers + prayers[end...start - 1]
         }
         userID.child(String(prayer.prayerID)).child("order").setValue(newOrder)
-        print(reorderPrayers)
         for p in reorderPrayers {
             if (change > 0) {
                 let shift = p.order + 1
-                print(shift)
-                print(p.order)
                 userID.child(String(p.prayerID)).child("order").setValue(shift)
-                print(p.order)
             } else if (change < 0){
                 let shift = p.order - 1
-                print(p.order)
                 userID.child(String(p.prayerID)).child("order").setValue(shift)
             }
         }
-        
         self.prayers.remove(at: start)
         self.prayers.insert(prayer, at: end)
     }

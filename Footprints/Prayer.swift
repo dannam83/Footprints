@@ -11,6 +11,7 @@ import Foundation
 struct Prayer {
     let prayerID: String
     let authorName: String
+    let authorID: String
     let prayerRequest: String
     let date: Date
     let answered: Bool
@@ -26,6 +27,7 @@ struct Prayer {
         
         guard
         let authorName = dict["authorName"] as? String,
+        let authorID = dict["authorID"] as? String,
         let prayerRequest = dict["prayerRequest"] as? String,
         let dateString = dict["date"] as? String,
         let date = dateFormatter.date(from: dateString),
@@ -36,6 +38,7 @@ struct Prayer {
             else { return nil }
         
         self.authorName = authorName
+        self.authorID = authorID
         self.prayerRequest = prayerRequest
         self.date = date
         self.answered = answered
