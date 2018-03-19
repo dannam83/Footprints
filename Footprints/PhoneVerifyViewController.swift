@@ -16,17 +16,6 @@ class PhoneVerifyViewController: UIViewController {
     @IBOutlet weak var phoneTF: UITextField!
     var usedBy: String?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func phoneSubmit(_ sender: Any) {
         guard let phone = phoneTF.text, phone != "" else {
             AlertController.showAlert(self, title: "Phone error", message: "Phone number not entered")
@@ -43,25 +32,20 @@ class PhoneVerifyViewController: UIViewController {
         self.phoneSave(phone: phoneMod, userID: userUID)
         self.performSegue(withIdentifier: "phoneVerifiedSegue", sender: nil)
     }
-    
-        func phoneCheck(phone: String) {
-            guard phone.count == 10 else {
-                AlertController.showAlert(self, title: "Phone error", message: "Phone number must be 10 digits.")
-                return
-            }
+    func phoneCheck(phone: String) {
+        guard phone.count == 10 else {
+            AlertController.showAlert(self, title: "Phone error", message: "Phone number must be 10 digits.")
+            return
         }
-    
-        func phoneUser(phone: String) {
-            let dbPhones = DatabaseAPI.shared.phonesReference
-            dbPhones.child(String(phone)).observe(DataEventType.value, with: {(snapshot) in
-                self.usedBy = snapshot.value as? String
-            })
-        }
-    
-        func phoneSave(phone: String, userID: String) {
-            let dbPhones = DatabaseAPI.shared.phonesReference
-            dbPhones.child(String(phone)).setValue(userID)
-        }
-    
-
+    }
+    func phoneUser(phone: String) {
+        let dbPhones = DatabaseAPI.shared.phonesReference
+        dbPhones.child(String(phone)).observe(DataEventType.value, with: {(snapshot) in
+            self.usedBy = snapshot.value as? String
+        })
+    }
+    func phoneSave(phone: String, userID: String) {
+        let dbPhones = DatabaseAPI.shared.phonesReference
+        dbPhones.child(String(phone)).setValue(userID)
+    }
 }
