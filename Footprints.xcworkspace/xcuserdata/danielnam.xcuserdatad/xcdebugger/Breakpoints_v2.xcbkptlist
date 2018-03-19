@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Footprints/SignUpViewController.swift"
-            timestampString = "543110537.548053"
+            timestampString = "543112470.9800889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "signUpButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
